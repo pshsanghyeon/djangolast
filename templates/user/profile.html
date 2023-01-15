@@ -1,0 +1,82 @@
+{%extends 'base.html'%}
+{%load mathfilters%}
+{%block con%}
+
+<div class="container mt-5 mb-5">
+    <h1><b>PROFILE</b></h1>
+
+    <div class="row">
+        <div class="col-sm-7 text-center" style="margin: auto;">
+            <img src="{{user.getpic}}" class="rounded-circle" width="80%">
+        </div>
+        <div class="col-sm-5">
+
+            <label class="form-label mt-5"><b>USERNAME</b></label>
+            <input type="text" disabled class="form-control" value="{{user.username}}">
+    
+            <label class="form-label mt-4"><b>POINTS</b></label>
+            {%if user.points < 0%}
+                <input type="text" disabled class="form-control" value="{{user.points|mul:0}}">
+            {%else%}
+                <input type="text" disabled class="form-control" value="{{user.points}}">
+            {%endif%}
+    
+            <label class="form-label mt-4"><b>PHONE</b></label>
+            <input type="text" disabled class="form-control" value="{{user.phone}}">
+
+            <label class="form-label mt-4"><b>FAVORITE</b></label><br><br>
+            {%for i in pset%}
+                    <ul style="float:left">
+                        <div class="card" style="width: 11rem;">
+                            <a href="{%url 'pro:detail' i.id%}"><img src="{{i.img.url}}" style="width: 174px;height: 160px;"class="card-img-top"></a>
+                            <div class="card-body">
+                            </div>
+                        </div>
+                    </ul>
+            {%endfor%}
+
+            {%for message in messages%}
+                <div class ="btn btn-danger rounded-pill px-5 my-3">
+                    {{message}}
+                </div>
+            {%endfor%}
+        </div>
+    </div>
+
+    <div class="mt-5 text-end">
+        <a href="{%url 'acc:update'%}" class="btn btn-dark btn-lg">Update info</a>
+        <!-- modal trigger button -->
+        <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Delete account
+        </button>
+    </div>
+    
+</div>
+
+
+<!-- Modal -->
+<form method="post" action="{%url 'acc:delete'%}">
+    {%csrf_token%}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting account</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label">Check Password</label>
+                    <input name = "pass" type="password" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+{%endblock%}

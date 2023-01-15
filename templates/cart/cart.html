@@ -1,0 +1,76 @@
+{%extends 'base.html'%}
+
+
+{%block con%}
+<form method="post" action="{%url 'cart:buy' %}">
+    {%csrf_token%}
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-3">
+                <h1><i class="fa-solid fa-cart-arrow-down"></i> CART</h1><br><br>
+                
+            </div>
+
+            <div class="col-9" >
+                <br><br><br><br>
+                
+            
+                    <table border="1" class = "border border-warning" width ="500">
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantitiy&nbsp;&nbsp;</th>
+                            <th>Delete</th>
+                        </tr>
+
+                        {%for i in cset%}
+                            <tr>
+                                <td><img src="{{i.img.url}}" style = "height:80px; width:100px;"></td>
+                                <td>{{i.name}}</td>
+                                <td>{{i.price}}$</td>
+                                <td>&nbsp;&nbsp;{{i.quantity}}</td>
+                                <th>&nbsp;<a href="{%url 'cart:remove' i.id%}"><button type="button" class="btn btn-danger" style ="height:30px; width:30px;"><i class="fa-solid fa-xmark"></i></button></th></a>
+                            </tr>
+                            <tr>
+                                <th><hr></th>
+                                <th><hr></th>
+                                <th><hr></th>
+                                <th><hr></th>
+                                <th><hr></th>
+                            </tr>
+                        {%empty%}
+                            <h4>NO items in your cart!</h4>
+                        {%endfor%}
+                        <tr>
+                            <th></th>
+                            <th><b>TOTAL : {{total}}$</b></th>
+                            {%if button == 0%}
+                                <th><a href="{%url 'cart:xpoints'%}"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Points(X)</button></a></th>
+                            {%else%}
+                                <th><a href="{%url 'cart:points'%}"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Points</button></a></th>
+                            {%endif%}
+                            <th><button class="btn btn-primary">Order</button></th>
+                        </tr>
+                    </table>
+
+
+                    {%for message in messages%}
+                        <div class ="btn btn-warning rounded-pill px-5 my-3">
+                            {{message}}
+                        </div>
+                    {%endfor%}
+
+            
+            </div>
+        </div>
+    </div>
+
+
+
+    
+   
+    
+
+
+{%endblock%}

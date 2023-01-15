@@ -1,0 +1,153 @@
+{%extends 'base.html'%}
+
+
+{%block con%}
+
+{%if user.is_authenticated%}
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-5">
+                <br>
+                <img src="{{p.img.url}}" style="width: 300px;height: 300px;">
+            </div>
+
+            <div class="col-7">
+                <h3 style="font-weight:bold;">{{p.name}}</h3><br><br>
+                <h6 style="font-weight:500;">{{p.Description | truncatewords:20 }}</h6><br>
+                {%for i in rate_num%}
+                    {%if i == -1 %}
+                        <i class="fa-regular fa-star"></i>
+                    {%elif i == -2 %}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    {%else%}
+                        <i class="fa-solid fa-star"></i>
+                    {%endif%}
+                {%endfor%}
+                {{p.rate}}
+                ({{p.stock}}stocks)<br><br><hr><br>
+
+                
+            
+                <form action="{%url 'cart:addcart' p.id%}">
+                    <h6><b>PRICE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.price}}$</h6>
+                    <h6><b>POINTS</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1% deposit</h6>
+                    <h6><b>REQUIRED</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account is required</h6><br><hr><br>
+                    <h6><b>Quantitiy</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name = "quantity" type="number" min="0" value="1" style="width: 50px;"></h6><br><br><br>
+                    {%if user in p.likey.all%}
+                        <a href="{%url 'favorite:unfavorite' p.id%}"><button style="width: 50px;height: 50px;" type="button" class="btn btn-outline-danger active"><i class="fa-regular fa-heart"></i></button></a>
+                    {%else%}
+                        <a href="{%url 'favorite:favorite' p.id%}"><button style="width: 50px;height: 50px;" type="button" class="btn btn-outline-danger"><i class="fa-regular fa-heart"></i></button></a>
+                    {%endif%}
+                    <button style="height: 50px;" class="btn btn-outline-dark">Add to Cart</button>
+                    <a href="{%url 'buynow' p.id%}"><button style="height: 50px;" type="button" class="btn btn-outline-info">Buy Now</button></a>
+                </form>
+            </div>
+            
+
+        </div>
+
+        <br><hr><br>
+        <h3 style="font-weight:bold;">SPECIFICATIONS</h3><br><br><br>
+        <h6><b>Kind</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.kind}}</h6>
+        <h6><b>Skin Type</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.skin_type}}</h6>
+        <h6><b>Skin Care Benefits</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.skin_care_benefits}}</h6>
+        <h6><b>Size</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.size}}</h6>
+        <h6><b>Condition</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.condition}}</h6>
+        <h6><b>Shelf</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.shelf}}</h6>
+        <h6><b>Country</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.country}}</h6>
+        <h6><b>Expiry date</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.expiry_date}}</h6>
+        <h6><b>Stock</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.stock}}</h6>
+        <h6><b>Ship</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.ship}}</h6>
+        <br><hr>
+
+        <h3 style="font-weight:bold;">DESCRIPTION</h3><br><br>
+
+        <p style="line-height: 2;">{{p.Description}}</p><br><hr>
+
+        <div id="emailHelp" class="form-text">Ask more details to employees!</div><br><hr>
+
+        
+
+
+    </div>
+
+{%else%}
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-5">
+                <br>
+                <img src="{{p.img.url}}" style="width: 300px;height: 300px;">
+            </div>
+
+            <div class="col-7">
+                <h3 style="font-weight:bold;">{{p.name}}</h3><br><br>
+                <h6 style="font-weight:500;">{{p.Description | truncatewords:20 }}</h6><br>
+                {%for i in rate_num%}
+                    {%if i == -1 %}
+                        <i class="fa-regular fa-star"></i>
+                    {%elif i == -2 %}
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    {%else%}
+                        <i class="fa-solid fa-star"></i>
+                    {%endif%}
+                {%endfor%}
+                {{p.rate}}
+                ({{p.stock}}stocks)<br><br><hr><br>
+
+                
+            
+                <form action="{%url 'cart:addcart' p.id%}">
+                    <h6><b>PRICE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.price}}$</h6>
+                    <h6><b>POINTS</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1% deposit</h6>
+                    <h6><b>REQUIRED</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account is required</h6><br><hr><br>
+                    <h6><b>Quantitiy</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name = "quantity" type="number" min="0" value="1" style="width: 50px;"></h6><br><br><br>
+                    <button onclick="alert2()" style="width: 50px;height: 50px;" type="button" class="btn btn-outline-danger"><i class="fa-regular fa-heart"></i></button></a>
+                    <button onclick="alert2()" type="button" style="height: 50px;" class="btn btn-outline-dark">Add to Cart</button>
+                    <button onclick="alert2()" style="height: 50px;" type="button" class="btn btn-outline-info">Buy Now</button></a>
+                </form>
+            </div>
+            
+
+        </div>
+
+        <br><hr><br>
+        <h3 style="font-weight:bold;">SPECIFICATIONS</h3><br><br><br>
+        <h6><b>Kind</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.kind}}</h6>
+        <h6><b>Skin Type</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.skin_type}}</h6>
+        <h6><b>Skin Care Benefits</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.skin_care_benefits}}</h6>
+        <h6><b>Size</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.size}}</h6>
+        <h6><b>Condition</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.condition}}</h6>
+        <h6><b>Shelf</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.shelf}}</h6>
+        <h6><b>Country</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.country}}</h6>
+        <h6><b>Expiry date</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.expiry_date}}</h6>
+        <h6><b>Stock</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.stock}}</h6>
+        <h6><b>Ship</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{p.ship}}</h6>
+        <br><hr>
+
+        <h3 style="font-weight:bold;">DESCRIPTION</h3><br><br>
+
+        <p style="line-height: 2;">{{p.Description}}</p><br><hr>
+
+        <div id="emailHelp" class="form-text">Ask more details to employees!</div><br><hr>
+        <script>
+            function alert2(msg){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You need to login!!!',
+                footer: '<a href="{%url 'acc:login'%}">Go to login page!</a>',
+              })
+             
+        
+            }
+          </script>
+          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        
+
+
+    </div>
+{%endif%}
+
+<script src="https://kit.fontawesome.com/4132db2d5e.js" crossorigin="anonymous"></script>
+{%endblock%}

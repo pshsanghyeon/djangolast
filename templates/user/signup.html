@@ -1,0 +1,52 @@
+{%extends 'base.html' %}
+
+
+
+{%block con%}
+
+<div class="container">
+    <div class="row my-5">
+        <span><img src="https://cdn.discordapp.com/attachments/852900580817109026/1062327898972885045/msedge_dq90ziNcad-removebg-preview.png" style="float:left; width: 120px;height: 100px;"><br><h1 style="font-weight:bold;">&nbsp;&nbsp;SIGNUP PAGE<br><br></h1></span>
+            <form method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">ID</label>
+                    <input name = "ID" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">PASSWORD</label>
+                    <input name = "pass" type="password" class="form-control" id="exampleInputPassword1">
+                    <div id="emailHelp" class="form-text">password should be longer than 10</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">CHECK PASSWORD</label>
+                    <input type="password" name = "ckpass" class="form-control" id="exampleInputPassword1">
+                    <div id="emailHelp" class="form-text">checking password is required</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                    <input name = "phone" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Profile Picture</label>
+                    <input class="form-control" name="img" type="file" id="formFile">
+                    {%for message in messages%}
+                        <div class ="btn btn-danger rounded-pill px-5 my-3">
+                            {{message}}
+                        </div>
+                    {%endfor%}
+                </div>
+            
+              
+                <button type="submit" class="btn btn-primary" style="width: 100px;">Signup</button>
+            </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+{%endblock%}

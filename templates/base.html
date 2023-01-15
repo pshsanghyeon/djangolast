@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  <body>
+    {%if user.is_authenticated%}
+    <nav class="navbar navbar-expand-lg bg-danger-subtle">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{%url 'home'%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1062327898972885045/msedge_dq90ziNcad-removebg-preview.png"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span style="font-size:1.5em;">
+                    <a class="nav-link active" aria-current="page" href="{%url 'home'%}">&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span style="font-size:1.5em;">
+                    <a class="nav-link active" aria-current="page" href="{%url 'pro:Skin_Care'%}">&nbsp;&nbsp;&nbsp;&nbsp;Product</a>
+                </span>
+              </li>
+                <li class="nav-item dropdown">
+                  <span style="font-size:1.5em;">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      &nbsp;&nbsp;&nbsp;&nbsp;{{user}}
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{%url 'acc:profile'%}">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{%url 'acc:logout'%}">Logout</a></li>
+                  </ul>
+              </li>
+              
+            </ul>
+            <div class="d-flex" >
+                <!-- Button trigger modal -->
+                  <!-- <i class="fa-solid fa-cart-shopping" style ="font-size:45px;" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+                  <a href="{%url 'cart:cart'%}"><button type="button" class="btn btn-warning-subtle position-relative">
+                    <i class="fa-solid fa-cart-shopping position-relative" style ="font-size:55px;" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                    </button></a>
+            </div>
+        </div>
+      </nav>
+
+    {%else%}
+      <nav class="navbar navbar-expand-lg bg-danger-subtle">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{%url 'home'%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1062327898972885045/msedge_dq90ziNcad-removebg-preview.png"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <span style="font-size:1.5em;">
+                    <a class="nav-link active" aria-current="page" href="{%url 'home'%}">&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
+                </span>
+              </li>
+              <li class="nav-item">
+                <span style="font-size:1.5em;">
+                    <a class="nav-link active" aria-current="page" href="{%url 'pro:Skin_Care'%}">&nbsp;&nbsp;&nbsp;&nbsp;Product</a>
+                </span>
+              </li>
+          
+           
+                <li class="nav-item">
+                  <span style="font-size:1.5em;">
+                    <a class="nav-link" href="{%url 'acc:login'%}">&nbsp;&nbsp;&nbsp;&nbsp;Login</a>
+                  </span>
+                </li>
+                <li class="nav-item">
+                  <span style="font-size:1.5em;">
+                    <a class="nav-link" href="{%url 'acc:signup'%}">&nbsp;&nbsp;&nbsp;&nbsp;Signup</a>
+                  </span>
+                </li>
+        
+            </ul>
+            <div class="d-flex" >
+                <!-- Button trigger modal -->
+                  <!-- <i class="fa-solid fa-cart-shopping" style ="font-size:45px;" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+                  <button onclick="alert()" type="button" class="btn btn-warning-subtle position-relative">
+                    <i class="fa-solid fa-cart-shopping position-relative" style ="font-size:55px;" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                  </button>
+            </div>
+        </div>
+      </nav>
+    {%endif%}
+
+    {%block con%}
+
+
+    {%endblock%}
+
+    <script>
+      function alert(msg){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'You need to login to use your cart!',
+          footer: '<a href="{%url 'acc:login'%}">Go to login page!</a>'
+        })
+       
+
+      }
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/4132db2d5e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+{%extends 'base.html'%}
+
+{%block con%}
+
+<h1><b>UPDATE PAGE</b></h1>
+
+<!-- username 은 변경불가하도록 disabled 유지 -->
+<form method ="post" action="{%url 'acc:update'%}" enctype="multipart/form-data">
+    {%csrf_token%}
+    <label class="form-label mt-5">USERNAME</label>
+    <input type="text" disabled value="{{user}}" class="form-control">
+
+    <label class="form-label mt-4">Phone Number</label>
+    <input type="text" value="{{user.phone}}" name="phone" class="form-control">
+
+    <label class="form-label mt-4">USERPIC</label>
+    <input name="img" type="file"  class="form-control">
+
+    <div class="text-end mt-4">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Change Password
+        </button>
+        <button class="btn btn-dark btn-lg">Done</button>
+    </div>
+</form>
+
+
+
+<!-- Modal -->
+<form method ="post" action="{%url 'acc:ckpass' %}">
+    {%csrf_token%}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><b>패스워드 변경창</b></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="password" name= "pass" placeholder="CURRENT PASSWORD" class="form-control">
+                    <input type="password" name = "new" placeholder="NEW PASSWORD" class="form-control mt-3">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button class="btn btn-primary">변경</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+{%endblock%}

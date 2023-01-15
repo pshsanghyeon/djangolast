@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+
+
+{%block con%}
+
+<div class="container">
+    <div class="row my-5">
+        <h1 class="text-danger"><pre>                                      {{kind}}</pre></h1>
+        <div class="col-3">
+            <h1>Category</h1><br><br>
+            <a href="{%url 'pro:Skin_Care'%}"><button type="button" class="btn btn-outline-danger">Skin Care</button><br><br></a>
+            <a href="{%url 'pro:Face_Makeup'%}"><button type="button" class="btn btn-outline-danger">Face Makeup</button><br><br></a>
+            <a href="{%url 'pro:Tools'%}"><button type="button" class="btn btn-outline-danger">Tools & Accessories</button><br><br></a>
+            <a href="{%url 'pro:Eye_Makeup'%}"><button type="button" class="btn btn-outline-danger">Eye Makeup</button><br><br></a>
+            <a href="{%url 'pro:Bath'%}"><button type="button" class="btn btn-outline-danger">Bath</button><br><br></a>
+            <a href="{%url 'pro:Slimming'%}"><button type="button" class="btn btn-outline-danger">Slimming</button><br><br></a>
+            <a href="{%url 'pro:Personal_Care'%}"><button type="button" class="btn btn-outline-danger">Personal Care</button><br><br></a>
+            <a href="{%url 'pro:Hair_Care'%}"><button type="button" class="btn btn-outline-danger">Hair Care</button><br><br></a>
+        </div>
+
+        <div class="col-9">
+            
+                {%for i in pset%}
+                    <ul style="float:left">
+                        <div class="card" style="width: 11rem;">
+                            <a href="{%url 'pro:detail' i.id%}"><img src="{{i.img.url}}" style="width: 174px;height: 160px;"class="card-img-top"></a>
+                            <div class="card-body">
+                            <span style="font-size:0.6em;">
+                                <p class="card-text">{{i.name}}</p>
+                            </span>
+                            </div>
+                        </div>
+                    </ul>
+                {%endfor%}
+           
+        </div>
+
+</div>
+
+
+
+
+
+{%endblock%}

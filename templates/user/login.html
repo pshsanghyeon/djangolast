@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{%block con%}
+
+<div class="container">
+    <div class="row my-5">
+        <span><img src="https://cdn.discordapp.com/attachments/852900580817109026/1062327898972885045/msedge_dq90ziNcad-removebg-preview.png" style="float:left; width: 120px;height: 100px;"><br><h1 style="font-weight:bold;">&nbsp;&nbsp;LOGIN PAGE<br><br></h1></span>
+            <form method="post">
+                {%csrf_token%}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">ID</label>
+                    <input name = "ID" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please type ID">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label" >PASSWORD</label>
+                    <input name = "pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Please type Password">
+                    {%for message in messages%}
+                        <div class ="btn btn-danger rounded-pill px-5 my-3">
+                            {{message}}
+                        </div>
+                    {%endfor%}
+                </div><br>
+                <button type="submit" class="btn btn-primary" style="width: 100px;">Login</button><br><br>
+            </form>
+            <hr>
+            <div id="emailHelp" class="form-text">You do not have an id? <a href="{%url 'acc:signup'%}">Sign up</a></div>
+    </div>
+</div>
+
+
+{%endblock%}

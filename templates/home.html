@@ -1,0 +1,118 @@
+{%extends 'base.html' %}
+
+{%block con%}
+
+{%for message in messages%}
+  <div class="alert alert-success" role="alert">
+    {{message}}
+  </div>
+{%endfor%}
+       
+
+
+<div class="container">
+    <div class="row my-5">
+        <div class="col-5">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="https://cdn.discordapp.com/attachments/852900580817109026/1063452973310689290/enm_press_20220406_09.jpg" style="height: 400px;" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://cdn.discordapp.com/attachments/852900580817109026/1063455013164306472/1580376290115_0.png" style="height: 400px;" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://cdn.discordapp.com/attachments/852900580817109026/1063456987104419850/283547_89834_4111.png"  style="height: 400px;" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+
+        <div class="col-7">
+            <br><br>
+            <b>Hey there! Korean Complexion offers a wide variety of 100% Authentic Korean Beauty Products. Choose from our wide range of products to achieve your desired flawless look with a very low price. 
+            Please review your orders before placing it to avoid cancellation. 😊😊
+            Enjoy shopping! 😊</b>
+        </div>
+    </div>
+    <hr>
+    <b>TOP PRODUCTS</b><br><br>
+
+    <ul style="float:left">
+      <div class="card" style="width: 11rem;">
+          <a href="{%url 'pro:detail' 37%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1063459568639803452/msedge_1eQ2Sebvkr.png" style="width: 174px;height: 160px;"class="card-img-top"></a>
+          <div class="card-body">
+          <span style="font-size:0.8em;">
+              <p class="card-text"><b>Elujai Propolis Myrrh Serum Oil 15ML <span class="badge text-bg-danger">Top 1</span></b></p>
+          </span>
+          </div>
+      </div>
+    </ul>
+    <ul style="float:left">
+      <div class="card" style="width: 11rem;">
+          <a href="{%url 'pro:detail' 4%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1063462051818770462/msedge_6LIw1HB75G.png" style="width: 174px;height: 160px;"class="card-img-top"></a>
+          <div class="card-body">
+          <span style="font-size:0.8em;">
+              <p class="card-text"><b>Etude House_Precious Mineral BB Cream Moist 45g <span class="badge text-bg-warning">Top 2</span></b></p>
+          </span>
+          </div>
+      </div>
+    </ul>
+    <ul style="float:left">
+      <div class="card" style="width: 11rem;">
+          <a href="{%url 'pro:detail' 6%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1063462052389203989/msedge_8o9ZTU3Sjl.png" style="width: 174px;height: 160px;"class="card-img-top"></a>
+          <div class="card-body">
+          <span style="font-size:0.8em;">
+              <p class="card-text"><b>Etude House Mask Theraphy <span class="badge text-bg-primary">Top 3</span></b></p>
+          </span>
+          </div>
+      </div>
+    </ul>
+    <ul style="float:left">
+      <div class="card" style="width: 11rem;">
+          <a href="{%url 'pro:detail' 17%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1063462052917678211/msedge_OO2uSi8fnW.png" style="width: 174px;height: 160px;"class="card-img-top"></a>
+          <div class="card-body">
+          <span style="font-size:0.8em;">
+              <p class="card-text"><b>Etude Baking Powder Pore Cleansing Foam Sachet [4ml] <span class="badge bg-secondary">Top 4</span></b></p>
+          </span>
+          </div>
+      </div>
+    </ul>
+    <ul style="float:left">
+      <div class="card " style="width: 11rem;">
+          <a href="{%url 'pro:detail' 19%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1063462053454561290/msedge_prhkZEgmRw.png" style="width: 174px;height: 160px;"class="card-img-top"></a>
+          <div class="card-body">
+          <span style="font-size:0.8em;">
+              <p class="card-text"><b>Innisfree Jeju Volcanic Pore Cleansing Foam 150ml <span class="badge bg-secondary">Top 5</span></b></p>
+          </span>
+          </div>
+      </div>
+    </ul>
+    <ul style="float:left">
+      <div class="card" style="width: 11rem;">
+          <a href="{%url 'pro:detail' 5%}"><img src="https://cdn.discordapp.com/attachments/852900580817109026/1063462650262069248/msedge_7sVVsj2aCm.png" style="width: 174px;height: 160px;"class="card-img-top"></a>
+          <div class="card-body">
+          <span style="font-size:0.8em;">
+              <p class="card-text"><b>RYO Damage & Derma Scalp Care Shampoo 400ml <span class="badge bg-secondary">Top 6</span></b></p>
+          </span>
+          </div>
+      </div>
+    </ul>
+    <br><br><br><br><br><br><br><br><br><br><br><br><hr>
+</div>
+
+
+
+
+
+{%endblock%}
+
+<!-- This is created by Sanghyeon Park from BIS SCHOOL! -->
